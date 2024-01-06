@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Category extends Model
+class Film extends Model
 {
     use HasFactory;
-    public function films(): BelongsToMany
+
+    protected $casts = [
+        'release' => 'date'
+    ];
+
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Film::class);
+        return $this->belongsToMany(Category::class);
     }
 }
