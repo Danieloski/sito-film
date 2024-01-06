@@ -3,30 +3,25 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Film extends Resource
+class Role extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Film>
+     * @var class-string<\App\Models\Role>
      */
-    public static $model = \App\Models\Film::class;
+    public static $model = \App\Models\Role::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'type';
 
     /**
      * The columns that should be searched.
@@ -34,7 +29,7 @@ class Film extends Resource
      * @var array
      */
     public static $search = [
-        'title',
+        'type',
     ];
 
     /**
@@ -47,13 +42,7 @@ class Film extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("Titolo","title"),
-            Number::make("Durata","length"),
-            Date::make("Data pubblicazione","release"),
-            Textarea::make("Descrizione", "description"),
-            BelongsToMany::make("Categorie","categories",Category::class),
-            HasMany::make("Persone","film_person_roles",FilmPersonRole::class),
-            HasMany::make("Enti","film_organization_roles",FilmOrganizationRole::class)
+            Text::make('Tipo',"type"),
         ];
     }
 

@@ -3,30 +3,25 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Film extends Resource
+class FilmPersonRole extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Film>
+     * @var class-string<\App\Models\FilmPersonRole>
      */
-    public static $model = \App\Models\Film::class;
+    public static $model = \App\Models\FilmPersonRole::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'role_id';
 
     /**
      * The columns that should be searched.
@@ -34,7 +29,6 @@ class Film extends Resource
      * @var array
      */
     public static $search = [
-        'title',
     ];
 
     /**
@@ -46,14 +40,9 @@ class Film extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make("Titolo","title"),
-            Number::make("Durata","length"),
-            Date::make("Data pubblicazione","release"),
-            Textarea::make("Descrizione", "description"),
-            BelongsToMany::make("Categorie","categories",Category::class),
-            HasMany::make("Persone","film_person_roles",FilmPersonRole::class),
-            HasMany::make("Enti","film_organization_roles",FilmOrganizationRole::class)
+            BelongsTo::make("Persona","person", Person::class)->searchable()->showCreateRelationButton(),
+            BelongsTo::make("Film","film", Film::class)->searchable(),
+            BelongsTo::make("Ruolo","role", Role::class)->searchable()->showCreateRelationButton(),
         ];
     }
 

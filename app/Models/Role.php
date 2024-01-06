@@ -4,15 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Film extends Model
+class Role extends Model
 {
     use HasFactory;
-
-    protected $casts = [
-        'release' => 'date'
-    ];
 
     public function film_person_roles(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -22,10 +17,5 @@ class Film extends Model
     public function film_organization_roles(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(FilmOrganizationRole::class);
-    }
-
-    public function categories(): BelongsToMany
-    {
-        return $this->belongsToMany(Category::class);
     }
 }
