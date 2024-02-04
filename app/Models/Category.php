@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Category extends Model
 {
     use HasFactory;
-    use Translatable;
+    //use Translatable;
 
-    public $translatedAttributes = ['name', 'description'];
+    //public $translatedAttributes = ['name', 'description'];
 
     public function films(): BelongsToMany
     {

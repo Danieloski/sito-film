@@ -45,12 +45,16 @@ class Category extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make("Nome", "name"),
+            Textarea::make("Descrizione", "description")
+            /*
             Translatable::make(
                 Text::make("Nome", "name"),
             ),
             Translatable::make(
                 Textarea::make("Descrizione", "description")
             ),
+            */
         ];
     }
 
