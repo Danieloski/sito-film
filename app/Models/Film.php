@@ -28,4 +28,10 @@ class Film extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function directors()
+    {
+        return $this->belongsToMany(Person::class, 'film_person_roles')
+            ->wherePivot('role_id', Role::where('type', 'Regista')->first()->id);
+    }
 }
