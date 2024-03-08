@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>List of Films</h1>
-<ul>
+<ol>
     @foreach($films as $film)
         <li>
             <strong>{{ $film->title }}</strong>
@@ -20,6 +20,6 @@
             @endforeach
         </li>
     @endforeach
-</ul>
+</ol>
 </body>
 </html>
