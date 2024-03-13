@@ -46,6 +46,7 @@ class Organization extends Resource
             ID::make()->sortable(),
             Text::make("Ragione sociale","name"),
             Textarea::make("Descrizione","description"),
+            Text::make("Provincia","province")->required()->maxlength(2)->enforceMaxlength(),
             Select::make('Tipo',"type")->options([
                 'no-profit' => 'Ente no-profit',
                 'public' => 'Ente pubblico/statale',

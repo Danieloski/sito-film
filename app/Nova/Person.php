@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -51,10 +52,15 @@ class Person extends Resource
             ID::make()->sortable(),
             Text::make("Nome","name")->required(),
             Text::make("Cognome","surname")->required(),
+            Select::make("Sesso","sex")->options([
+                'f'=>"Femminile",
+                'm'=>"Maschile",
+            ]),
+            Text::make("Città di nascita", "birthplace")->required(false),
             Date::make("Data di nascita","birth")->required(false),
+            Text::make("Città di morte", "deathplace")->required(false),
             Date::make("Data di morte","death")->required(false),
-            Text::make("Provincia","province")->required()->maxlength(2)->enforceMaxlength(),
-
+            Text::make("Provincia","province")->required()->maxlength(2)->enforceMaxlength()
         ];
     }
 
