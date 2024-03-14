@@ -42,6 +42,7 @@
     <h1>Griglia di Film</h1>
     <div class="grid-container">
         @foreach($films as $film)
+            <a href="{{route("films.show",["film"=> $film->id])}}" style="color: #000; text-decoration: none">
             <div class="film">
                 <div class="film-title">{{ $film->title }}</div>
                 <strong>Regista:</strong>
@@ -54,6 +55,7 @@
                 </ul>
                 <strong>Anno di Pubblicazione:</strong> {{ $film->release->format('Y') }}
             </div>
+            </a>
         @endforeach
     </div>
 </body>

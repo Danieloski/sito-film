@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show');

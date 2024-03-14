@@ -34,4 +34,20 @@ class Film extends Model
         return $this->belongsToMany(Person::class, 'film_person_roles')
             ->wherePivot('role_id', Role::where('type', 'Regista')->first()->id);
     }
+
+    public function producers()
+    {
+        return $this->belongsToMany(Person::class, 'film_person_roles')
+            ->wherePivot('role_id', Role::orWhere('type', 'Coproduttore')->orWhere("type","Produttore")->first()->id);
+    }
+    public function orgProducers()
+    {
+        $roleIds = [];
+        $roles = Role::orWhere('type', 'Coproduttore')->orWhere("type","Produttore")->get();
+        foreach ($roles as $role) {
+            $roleIds[] = $role->id;
+        }
+        return $this->belongsToMany(Organization::class, 'film_organization_roles')
+            ->wherePivotIn('role_id', $roleIds);
+    }
 }
