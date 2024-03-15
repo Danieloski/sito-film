@@ -14,7 +14,7 @@ use App\Http\Controllers\FilmController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
